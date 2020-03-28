@@ -67,11 +67,10 @@ int main(int argument_c, char** argument_v) {
         for(int i=0; i<m; i++)
                 need[i] = (int *)malloc(n * sizeof(**need));
 
-        for(int i=0; i<m; i++)
+        for(int i=0; i<m; i++){
                 for(int j=0; j<n; j++)
-                        need[i][j] = maxReq[i][j] - allocate[i][j];
+                        need[i][j] = maxReq[i][j] - allocate[i][j];}
 
-	
 	safe = (int *)malloc(m * sizeof(*safe));
         for(int i=0; i<m; i++) safe[i] = -1;
 
