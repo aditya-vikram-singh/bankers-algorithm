@@ -16,12 +16,8 @@ int nProcessRan = 0;
 
 pthread_mutex_t lockResource;
 pthread_cond_t condition;
-
-
 bool getSafe();
-
 void* processcode(void* );
-
 int main(int argument_c, char** argument_v) {
 	srand(time(NULL));
 
@@ -67,9 +63,7 @@ int main(int argument_c, char** argument_v) {
                         scanf("%d", &maxReq[i][j]);
         }
         printf("\n");
-
-	
-        need = (int **)malloc(m * sizeof(*need));
+	need = (int **)malloc(m * sizeof(*need));
         for(int i=0; i<m; i++)
                 need[i] = (int *)malloc(n * sizeof(**need));
 
@@ -92,8 +86,6 @@ int main(int argument_c, char** argument_v) {
 
         printf("\nExecutable Processes\n\n");
         sleep(1);
-	
-	
 	pthread_t processes[m];
         pthread_attr_t attr;
         pthread_attr_init(&attr);
@@ -123,7 +115,7 @@ int main(int argument_c, char** argument_v) {
 	free(need);
         free(safe);
 }
- bool getSafe() {
+   bool getSafe() {
 	
         int temp[n];
         for(int i=0; i<n; i++) temp[i] = resource[i];
@@ -162,15 +154,12 @@ int main(int argument_c, char** argument_v) {
         }
         return true;
 }
-
 void* processcode(void *arg) {
         int p = *((int *) arg);
 
 	
         pthread_mutex_lock(&lockResource);
-
-        
-        while(p != safe[nProcessRan])
+	while(p != safe[nProcessRan])
                 pthread_cond_wait(&condition, &lockResource);
 
 	
